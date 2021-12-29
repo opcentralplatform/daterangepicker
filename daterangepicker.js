@@ -1054,8 +1054,14 @@
             }
 
             if (this.drops == 'auto') {
+                var offsetTop = this.element.offset().top,
+                containerHeight = this.container.height(),
+                elemenOuterHeight = this.element.outerHeight();
+
                 containerTop = this.element.offset().top + this.element.outerHeight() - parentOffset.top;
-                if (containerTop + this.container.outerHeight() >= this.parentEl[0].scrollHeight) {
+                //if (containerTop + this.container.outerHeight() >= this.parentEl[0].scrollHeight) {
+                if (offsetTop + containerHeight >= $(window).height() + $(window).scrollTop() &&
+                    containerHeight + elemenOuterHeight < offsetTop) {
                     containerTop = this.element.offset().top - this.container.outerHeight() - parentOffset.top;
                     drops = 'up';
                 }
